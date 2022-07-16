@@ -1,2 +1,2 @@
 # ASM-Chart-Simulation
-It's an app which gets ASM Chart and simulate it (showing registers' values) based on cycle
+It's an app that gets ASM Chart and simulates it (showing registers' values) based on the cycle.
