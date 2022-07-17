@@ -4,46 +4,76 @@ It's an app that gets ASM Chart and simulates it (showing registers' values) bas
 ### Supported Expressions
 ---
 #### Register Operations
-- Register <= Register
-- Register <= Register + Register
-- Register <= Register + Number
-- Register <= Number + Register
-- Register <= Register - Register
-- Register <= Register - Number
-- Register <= Number - Register
+- Register<=Register
+- Register<=Register+Register
+- Register<=Register+Number
+- Register<=Number+Register
+- Register<=Register-Register
+- Register<=Register-Number
+- Register<=Number-Register
+- Register<=Register\*Register
+- Register<=Register\*Number
+- Register<=Number\*Register
+- Register<=Register/Register
+- Register<=Register/Number
+- Register<=Number/Register
 <br>
 
-- Register = Register
-- Register = Register + Register
-- Register = Register + Number
-- Register = Number + Register
-- Register = Register - Register
-- Register = Register - Number
-- Register = Number - Register
+- Register=Register
+- Register=Register+Register
+- Register=Register+Number
+- Register=Number+Register
+- Register=Register-Register
+- Register=Register-Number
+- Register=Number-Register
+- Register=Register\*Register
+- Register=Register\*Number
+- Register=Number\*Register
+- Register=Register/Register
+- Register=Register/Number
+- Register=Number/Register
 
 #### Conditions
-- Register || Register
-- Register || Number
-- Number || Register
-- Number || Number
+- Register==Register
+- Register==Number
+- Number==Register
+- Number==Number
 <br>
 
-- Register && Register
-- Register && Number
-- Number && Register
-- Number && Number
+- Register<Register
+- Register<Number
+- Number<Register
+- Number<Number
 <br>
 
-- Register | Register
-- Register | Number
-- Number | Register
-- Number | Number
+- Register<=Register
+- Register<=Number
+- Number<=Register
+- Number<=Number
 <br>
 
-- Register & Register
-- Register & Number
-- Number & Register
-- Number & Number
+- Register||Register
+- Register||Number
+- Number||Register
+- Number||Number
+<br>
+
+- Register&&Register
+- Register&&Number
+- Number&&Register
+- Number&&Number
+<br>
+
+- Register|Register
+- Register|Number
+- Number|Register
+- Number|Number
+<br>
+
+- Register&Register
+- Register&Number
+- Number&Register
+- Number&Number
 <br>
 
 - |Register
