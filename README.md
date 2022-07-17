@@ -5,6 +5,7 @@ It's an app that gets ASM Chart and simulates it (showing registers' values) bas
 ---
 #### Register Operations
 - Register<=Register
+- Register<=Number
 - Register<=Register+Register
 - Register<=Register+Number
 - Register<=Number+Register
@@ -20,6 +21,7 @@ It's an app that gets ASM Chart and simulates it (showing registers' values) bas
 <br>
 
 - Register=Register
+- Register=Number
 - Register=Register+Register
 - Register=Register+Number
 - Register=Number+Register
