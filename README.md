@@ -6,6 +6,9 @@ It's an app that gets ASM Chart and simulates it (showing registers' values) bas
 Please note that all numbers (inputs and outputs) must be decimal, and default value of registers is zero. How to using this app is clear when you starting the app.  
 But if you see any problem in using the app, any bug or any suggestion, please feel free to contact me: fakhimi.amirmohamad@gmail.com
 Hope you will enjoy. 😉
+### How to Run
+---
+Fist download the latest release. Then run terminal/cmd in download folder, and after that run "java -jar ASMChartSimulation.jar". 🥳
 ### Supported Expressions
 ---
 #### Register Operations
