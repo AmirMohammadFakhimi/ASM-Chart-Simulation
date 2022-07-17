@@ -286,6 +286,7 @@ public class Main {
                 currentBoxId = nextBoxId;
             } while ((!(Box.getBox(nextBoxId) instanceof StateBox)));
 
+            Register.updateRegisters();
             drawRowOfTheTable(clock, nextBoxId);
         }
     }
@@ -310,27 +311,9 @@ public class Main {
     private static void drawRowOfTheTable(final int clock, final int nextBoxId) {
         System.out.format("%" + printSpace + "d |", clock);
         for (Register register : Register.getRegisters())
-            System.out.format("%" + printSpace + "d    |", register.getValue());
+            System.out.format("%" + printSpace + "d    |", register.getNewValue());
 
         System.out.format("%" + printSpace + "s    |\n", ((StateBox) Box.getBox(nextBoxId)).getName());
     }
 
 }
-/*
-init, mul
-start 0 1
-|r1 0 1
-r1<=Input1 r2<=Input2 r3<=0 ready<=0
-r3<=r3+r2 r1<=r1-1
-ready<=1 r4<=r3
-2
-3
-0
-4
-6
-5
-1
-1
-0
-0
-*/

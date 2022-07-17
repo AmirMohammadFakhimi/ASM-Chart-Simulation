@@ -4,12 +4,14 @@ import java.util.Objects;
 public class Register {
     private static final ArrayList<Register> registers = new ArrayList<>();
 
-    private String name;
-    private int value;
+    private final String name;
+    private int oldValue;
+    private int newValue;
 
     private Register(String name) {
         this.name = name;
-        this.value = 0;
+        this.oldValue = 0;
+        this.newValue = 0;
 
         registers.add(this);
     }
@@ -30,19 +32,24 @@ public class Register {
         return null;
     }
 
+    public static void updateRegisters() {
+        for (Register register : registers)
+            register.oldValue = register.newValue;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getOldValue() {
+        return oldValue;
     }
 
-    public int getValue() {
-        return value;
+    public int getNewValue() {
+        return newValue;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setNewValue(int newValue) {
+        this.newValue = newValue;
     }
 }

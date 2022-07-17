@@ -216,52 +216,52 @@ public class Expression {
 //        Register Operations
         if (type.getFirst().equals(ExpressionType.ADD)) {
             if (type.getSecond().equals(ExpressionOperator.RR))
-                register3.setValue(register1.getValue() + register2.getValue());
+                register3.setNewValue(register1.getOldValue() + register2.getOldValue());
             else if (type.getSecond().equals(ExpressionOperator.RN) || type.getSecond().equals(ExpressionOperator.NR))
-                register3.setValue(register1.getValue() + number);
+                register3.setNewValue(register1.getOldValue() + number);
 
             return -1;
         } else if (type.getFirst().equals(ExpressionType.SUB)) {
             if (type.getSecond().equals(ExpressionOperator.RR))
-                register3.setValue(register1.getValue() - register2.getValue());
+                register3.setNewValue(register1.getOldValue() - register2.getOldValue());
             else if (type.getSecond().equals(ExpressionOperator.RN))
-                register3.setValue(register1.getValue() - number);
+                register3.setNewValue(register1.getOldValue() - number);
             else if (type.getSecond().equals(ExpressionOperator.NR))
-                register3.setValue(number - register1.getValue());
+                register3.setNewValue(number - register1.getOldValue());
 
             return -1;
         } else if (type.getFirst().equals(ExpressionType.MUL)) {
             if (type.getSecond().equals(ExpressionOperator.RR))
-                register3.setValue(register1.getValue() * register2.getValue());
+                register3.setNewValue(register1.getOldValue() * register2.getOldValue());
             else if (type.getSecond().equals(ExpressionOperator.RN) || type.getSecond().equals(ExpressionOperator.NR))
-                register3.setValue(register1.getValue() * number);
+                register3.setNewValue(register1.getOldValue() * number);
 
             return -1;
         } else if (type.getFirst().equals(ExpressionType.DIV)) {
             if (type.getSecond().equals(ExpressionOperator.RR))
-                register3.setValue(register1.getValue() / register2.getValue());
+                register3.setNewValue(register1.getOldValue() / register2.getOldValue());
             else if (type.getSecond().equals(ExpressionOperator.RN))
-                register3.setValue(register1.getValue() / number);
+                register3.setNewValue(register1.getOldValue() / number);
             else if (type.getSecond().equals(ExpressionOperator.NR))
-                register3.setValue(number / register1.getValue());
+                register3.setNewValue(number / register1.getOldValue());
 
             return -1;
         } else if (type.getFirst().equals(ExpressionType.MODE)) {
             if (type.getSecond().equals(ExpressionOperator.RR))
-                register3.setValue(register1.getValue() % register2.getValue());
+                register3.setNewValue(register1.getOldValue() % register2.getOldValue());
             else if (type.getSecond().equals(ExpressionOperator.RN))
-                register3.setValue(register1.getValue() % number);
+                register3.setNewValue(register1.getOldValue() % number);
             else if (type.getSecond().equals(ExpressionOperator.NR))
-                register3.setValue(number % register1.getValue());
+                register3.setNewValue(number % register1.getOldValue());
 
             return -1;
         } else if (type.getFirst().equals(ExpressionType.ASSIGN)) {
             if (type.getSecond().equals(ExpressionOperator.R))
-                register3.setValue(register1.getValue());
+                register3.setNewValue(register1.getOldValue());
             else if (type.getSecond().equals(ExpressionOperator.N))
-                register3.setValue(number);
+                register3.setNewValue(number);
             else if (type.getSecond().equals(ExpressionOperator.INPUT))
-                register3.setValue(Utils.getIntegerInput(expression));
+                register3.setNewValue(Utils.getIntegerInput(expression));
 
             return -1;
         }
@@ -269,69 +269,69 @@ public class Expression {
 //        Conditions
         else if (type.getFirst().equals(ExpressionType.EQUAL)) {
             if (type.getSecond().equals(ExpressionOperator.RR))
-                return register1.getValue() == register2.getValue() ? 1 : 0;
+                return register1.getOldValue() == register2.getOldValue() ? 1 : 0;
             else if (type.getSecond().equals(ExpressionOperator.RN) || type.getSecond().equals(ExpressionOperator.NR))
-                return register1.getValue() == number ? 1 : 0;
+                return register1.getOldValue() == number ? 1 : 0;
 
             return -2;
         } else if (type.getFirst().equals(ExpressionType.LESS)) {
             if (type.getSecond().equals(ExpressionOperator.RR))
-                return register1.getValue() < register2.getValue() ? 1 : 0;
+                return register1.getOldValue() < register2.getOldValue() ? 1 : 0;
             else if (type.getSecond().equals(ExpressionOperator.RN))
-                return register1.getValue() < number ? 1 : 0;
+                return register1.getOldValue() < number ? 1 : 0;
             else if (type.getSecond().equals(ExpressionOperator.NR))
-                return number < register1.getValue() ? 1 : 0;
+                return number < register1.getOldValue() ? 1 : 0;
 
             return -2;
         } else if (type.getFirst().equals(ExpressionType.LESS_EQUAL)) {
             if (type.getSecond().equals(ExpressionOperator.RR))
-                return register1.getValue() <= register2.getValue() ? 1 : 0;
+                return register1.getOldValue() <= register2.getOldValue() ? 1 : 0;
             else if (type.getSecond().equals(ExpressionOperator.RN))
-                return register1.getValue() <= number ? 1 : 0;
+                return register1.getOldValue() <= number ? 1 : 0;
             else if (type.getSecond().equals(ExpressionOperator.NR))
-                return number <= register1.getValue() ? 1 : 0;
+                return number <= register1.getOldValue() ? 1 : 0;
 
             return -2;
         } else if (type.getFirst().equals(ExpressionType.LOGICAL_AND)) {
             if (type.getSecond().equals(ExpressionOperator.RR))
-                return register1.getValue() != 0 && register2.getValue() != 0 ? 1 : 0;
+                return register1.getOldValue() != 0 && register2.getOldValue() != 0 ? 1 : 0;
             else if (type.getSecond().equals(ExpressionOperator.RN))
-                return register1.getValue() != 0 && number != 0 ? 1 : 0;
+                return register1.getOldValue() != 0 && number != 0 ? 1 : 0;
             else if (type.getSecond().equals(ExpressionOperator.NR))
-                return number != 0 && register1.getValue() != 0 ? 1 : 0;
+                return number != 0 && register1.getOldValue() != 0 ? 1 : 0;
 
             return -2;
         } else if (type.getFirst().equals(ExpressionType.LOGICAL_OR)) {
             if (type.getSecond().equals(ExpressionOperator.RR))
-                return register1.getValue() != 0 || register2.getValue() != 0 ? 1 : 0;
+                return register1.getOldValue() != 0 || register2.getOldValue() != 0 ? 1 : 0;
             else if (type.getSecond().equals(ExpressionOperator.RN))
-                return register1.getValue() != 0 || number != 0 ? 1 : 0;
+                return register1.getOldValue() != 0 || number != 0 ? 1 : 0;
             else if (type.getSecond().equals(ExpressionOperator.NR))
-                return number != 0 || register1.getValue() != 0 ? 1 : 0;
+                return number != 0 || register1.getOldValue() != 0 ? 1 : 0;
 
             return -2;
         } else if (type.getFirst().equals(ExpressionType.BITWISE_AND)) {
             if (type.getSecond().equals(ExpressionOperator.RR))
-                return register1.getValue() & register2.getValue();
+                return register1.getOldValue() & register2.getOldValue();
             else if (type.getSecond().equals(ExpressionOperator.RN) || type.getSecond().equals(ExpressionOperator.NR))
-                return register1.getValue() & number;
+                return register1.getOldValue() & number;
             else if (type.getSecond().equals(ExpressionOperator.R)) {
-                if (register1.getValue() == 0) {
+                if (register1.getOldValue() == 0) {
                     return 0;
                 } else {
-                    int highestOneBit = Integer.highestOneBit(register1.getValue());
-                    return Math.pow(2, highestOneBit) - 1 == register1.getValue() ? 1 : 0;
+                    int highestOneBit = Integer.highestOneBit(register1.getOldValue());
+                    return Math.pow(2, highestOneBit) - 1 == register1.getOldValue() ? 1 : 0;
                 }
             }
 
             return -2;
         } else if (type.getFirst().equals(ExpressionType.BITWISE_OR)) {
             if (type.getSecond().equals(ExpressionOperator.RR))
-                return register1.getValue() | register2.getValue();
+                return register1.getOldValue() | register2.getOldValue();
             else if (type.getSecond().equals(ExpressionOperator.RN) || type.getSecond().equals(ExpressionOperator.NR))
-                return register1.getValue() | number;
+                return register1.getOldValue() | number;
             else if (type.getSecond().equals(ExpressionOperator.R))
-                return register1.getValue() != 0 ? 1 : 0;
+                return register1.getOldValue() != 0 ? 1 : 0;
 
             return -2;
         } else if (type.getFirst().equals(ExpressionType.INPUT))
