@@ -1,7 +1,7 @@
 public class Expression {
     private final Pair<ExpressionType, ExpressionOperator> type = new Pair<>();
 
-    private String inputCondition = null;
+    private final String expression;
     private Register register1;
     private Register register2;
     //    destination register
@@ -9,10 +9,8 @@ public class Expression {
 
     private int number;
 
-    private final boolean isCondition;
-
     public Expression(String expression, boolean isCondition) {
-        this.isCondition = isCondition;
+        this.expression = expression;
 
 //        Register Operations
         if (expression.contains("<=") && expression.contains("+")) {
@@ -101,24 +99,24 @@ public class Expression {
         register2Name = expression.substring(expression.indexOf(operator) + 1);
 
 
-        register3 = new Register(register3Name);
+        register3 = Register.createRegister(register3Name);
         if (Utils.isInteger(register1Name)) {
             number = Integer.parseInt(register1Name);
-            register1 = new Register(register2Name);
+            register1 = Register.createRegister(register2Name);
 
             register2 = null;
 
             type.setSecond(ExpressionOperator.NR);
         } else if (Utils.isInteger(register2Name)) {
             number = Integer.parseInt(register2Name);
-            register1 = new Register(register1Name);
+            register1 = Register.createRegister(register1Name);
 
             register2 = null;
 
             type.setSecond(ExpressionOperator.RN);
         } else {
-            register1 = new Register(register1Name);
-            register2 = new Register(register2Name);
+            register1 = Register.createRegister(register1Name);
+            register2 = Register.createRegister(register2Name);
 
             number = 0;
 
@@ -138,15 +136,24 @@ public class Expression {
         }
 
 
-        register3 = new Register(register3Name);
+        register3 = Register.createRegister(register3Name);
         register2 = null;
+
+        if (register1Name.startsWith("Input")) {
+            register1 = null;
+            number = 0;
+
+            type.setSecond(ExpressionOperator.INPUT);
+            return;
+        }
+
         if (Utils.isInteger(register1Name)) {
             number = Integer.parseInt(register1Name);
             register1 = null;
 
             type.setSecond(ExpressionOperator.N);
         } else {
-            register1 = new Register(register1Name);
+            register1 = Register.createRegister(register1Name);
             number = 0;
 
             type.setSecond(ExpressionOperator.R);
@@ -160,21 +167,21 @@ public class Expression {
         register3 = null;
         if (Utils.isInteger(register1Name)) {
             number = Integer.parseInt(register1Name);
-            register1 = new Register(register2Name);
+            register1 = Register.createRegister(register2Name);
 
             register2 = null;
 
             type.setSecond(ExpressionOperator.NR);
         } else if (Utils.isInteger(register2Name)) {
-            register1 = new Register(register1Name);
+            register1 = Register.createRegister(register1Name);
             number = Integer.parseInt(register2Name);
 
             register2 = null;
 
             type.setSecond(ExpressionOperator.RN);
         } else {
-            register1 = new Register(register1Name);
-            register2 = new Register(register2Name);
+            register1 = Register.createRegister(register1Name);
+            register2 = Register.createRegister(register2Name);
 
             number = 0;
 
@@ -183,7 +190,7 @@ public class Expression {
     }
 
     private void compileOneOperatorConditions(String expression) {
-        register1 = new Register(expression.substring(1));
+        register1 = Register.createRegister(expression.substring(1));
 
         register2 = null;
         register3 = null;
@@ -193,8 +200,6 @@ public class Expression {
     }
 
     private void compileInput(String expression) {
-        inputCondition = expression;
-
         register1 = null;
         register2 = null;
         register3 = null;
@@ -255,6 +260,8 @@ public class Expression {
                 register3.setValue(register1.getValue());
             else if (type.getSecond().equals(ExpressionOperator.N))
                 register3.setValue(number);
+            else if (type.getSecond().equals(ExpressionOperator.INPUT))
+                register3.setValue(getInput());
 
             return -1;
         }
@@ -327,18 +334,21 @@ public class Expression {
                 return register1.getValue() != 0 ? 1 : 0;
 
             return -2;
-        } else if (type.getFirst().equals(ExpressionType.INPUT)) {
-            do {
-                System.out.print("Please enter input number for \"" + inputCondition + "\" condition: ");
-                try {
-                    return Integer.parseInt(Utils.getScanner().nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input, please try again.");
-                }
-            } while (true);
-        }
+        } else if (type.getFirst().equals(ExpressionType.INPUT))
+            return getInput();
 
 
         return -3;
+    }
+
+    private int getInput() {
+        do {
+            System.out.print("Please enter input number for \"" + expression + "\" condition: ");
+            try {
+                return Integer.parseInt(Utils.getScanner().nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input, please try again.");
+            }
+        } while (true);
     }
 }

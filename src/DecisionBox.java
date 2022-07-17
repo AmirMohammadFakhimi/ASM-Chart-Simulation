@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 
 public class DecisionBox extends Box {
     private static final ArrayList<DecisionBox> decisionBoxes = new ArrayList<>();
@@ -15,7 +13,6 @@ public class DecisionBox extends Box {
         this.condition = condition;
         for (int i = 0; i < outputs.length; i++)
             this.outputs.put(i, -1);
-
 
         decisionBoxes.add(this);
     }
@@ -31,4 +28,10 @@ public class DecisionBox extends Box {
     public void putToOutputs(int index, int value) {
         outputs.put(index, value);
     }
+
+    public Expression getCondition() {
+        return condition;
+    }
+
+
 }

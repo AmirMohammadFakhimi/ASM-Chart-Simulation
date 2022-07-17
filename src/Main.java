@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class Main {
-    
+    final static int printSpace = 10;
 
     public static void main(String[] args) {
         getBoxes();
@@ -88,6 +88,8 @@ public class Main {
                 String[] outputs = Arrays.copyOfRange(decisionBoxInfo, 1, decisionBoxInfo.length);
                 int[] outputsInt = Arrays.stream(outputs).mapToInt(Integer::valueOf).toArray();
                 Integer[] outputsInteger = Arrays.stream(outputsInt).boxed().toArray(Integer[]::new);
+                if (outputsInteger.length == 0)
+                    throw new Exception();
 
                 String condition = decisionBoxInfo[0];
                 try {
@@ -98,7 +100,7 @@ public class Main {
                             "So we skip it.");
                 }
             } catch (Exception e) {
-                System.out.println("Outputs must be integers!\n" +
+                System.out.println("Decision box must have Outputs and they must be integers!\n" +
                         "So we skip it.");
             }
 
@@ -256,43 +258,78 @@ public class Main {
         int nextBoxId = -1;
 
 //        i is the clock
-        for (int i = 1; i <= 100 && nextBoxId != startingBoxId; i++) {
-            Box box = Box.getBox(currentBoxId);
+        for (int i = 1; i <= 50; i++) {
+            do {
+                Box box = Box.getBox(currentBoxId);
 
-            if (box instanceof StateBox) {
+                if (box instanceof StateBox stateBox) {
+                    runRegisterOperations(stateBox.getRegisterOperations());
+                    nextBoxId = stateBox.getOutput();
+                } else if (box instanceof DecisionBox decisionBox) {
+                    boolean isValid;
+                    do {
+                        int result = decisionBox.getCondition().doWork();
+                        try {
+                            nextBoxId = decisionBox.getOutputs().get(result);
+                            isValid = true;
+                        } catch (NullPointerException e) {
+                            System.out.println("There isn't matched output.");
+                            isValid = false;
+                        }
+                    } while (!isValid);
+                } else if (box instanceof ConditionalBox conditionalBox) {
+                    runRegisterOperations(conditionalBox.getRegisterOperations());
+                    nextBoxId = conditionalBox.getOutput();
+                }
 
-            } else if (box instanceof DecisionBox) {
-//                nextBoxId = ((DecisionBox) box).getOutput(i);
-//                drawASMChart(currentBoxId, nextBoxId, i);
-            } else if (box instanceof ConditionalBox) {
-//                nextBoxId = ((ConditionalBox) box).getOutput(i);
-//                drawASMChart(currentBoxId, nextBoxId, i);
-            }
+                currentBoxId = nextBoxId;
+            } while ((!(Box.getBox(nextBoxId) instanceof StateBox)));
+
+            drawRowOfTheTable(i, nextBoxId);
+        }
+    }
+
+    private static void runRegisterOperations(ArrayList<Expression> registerOperations) {
+        for (Expression registerOperation : registerOperations) {
+            registerOperation.doWork();
         }
     }
 
     private static void drawHeaderOfTheTable() {
-        System.out.format("%4s |", "clk");
+        System.out.format("%" + printSpace + "s |", "clk");
         for (Register register : Register.getRegisters())
-            System.out.format("%15s    |", register.getName());
-        System.out.format("%15s    |\n", "Next ASM Block");
+            System.out.format("%" + printSpace + "s    |", register.getName());
+        System.out.format("%" + printSpace + "s    |\n", "Next ASM Block");
 
-        for (int i = 0; i < 15 * Register.getRegisters().size(); i++)
+        for (int i = 0; i < printSpace * 2 * Register.getRegisters().size(); i++)
             System.out.print("_");
         System.out.println();
     }
 
     private static void drawRowOfTheTable(final int clock, final int nextBoxId) {
-        System.out.format("%4d |", clock);
+        System.out.format("%" + printSpace + "d |", clock);
         for (Register register : Register.getRegisters())
-            System.out.format("%15d    |", register.getValue());
+            System.out.format("%" + printSpace + "d    |", register.getValue());
 
-        System.out.format("%15s    |\n", ((StateBox) Box.getBox(nextBoxId)).getName());
+        System.out.format("%" + printSpace + "s    |\n", ((StateBox) Box.getBox(nextBoxId)).getName());
     }
 
 }
 /*
-state1 r1<=r2
-r1<r2 0 1
-r1<=r2
+init, mul
+start 0 1
+|r1 0 1
+r1<=Input1 r2<=Input2 r3<=0 ready<=0
+r3<=r3+r2 r1<=r1-1
+ready<=1 r4<=r3
+2
+3
+0
+4
+6
+5
+1
+1
+0
+0
 */

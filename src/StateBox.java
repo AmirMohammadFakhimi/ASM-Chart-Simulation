@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class StateBox extends Box {
     private static final ArrayList<StateBox> stateBoxes = new ArrayList<>();
@@ -25,7 +24,15 @@ public class StateBox extends Box {
         this.output = output;
     }
 
+    public ArrayList<Expression> getRegisterOperations() {
+        return registerOperations;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public int getOutput() {
+        return output;
     }
 }

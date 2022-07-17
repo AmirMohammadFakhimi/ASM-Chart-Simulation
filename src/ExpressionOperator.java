@@ -5,5 +5,6 @@ public enum ExpressionOperator {
     N,
     RR,
     RN,
-    NR
+    NR,
+    INPUT
 }

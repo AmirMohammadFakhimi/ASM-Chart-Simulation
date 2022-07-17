@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Register {
     private static final ArrayList<Register> registers = new ArrayList<>();
@@ -6,15 +7,27 @@ public class Register {
     private String name;
     private int value;
 
-    public Register(String name) {
+    private Register(String name) {
         this.name = name;
         this.value = 0;
 
         registers.add(this);
     }
 
+    public static Register createRegister(String name) {
+        Register register = getRegister(name);
+        return Objects.requireNonNullElseGet(register, () -> new Register(name));
+    }
+
     public static ArrayList<Register> getRegisters() {
         return new ArrayList<>(registers);
+    }
+
+    public static Register getRegister(String name) {
+        for (Register register : registers)
+            if (register.name.equals(name))
+                return register;
+        return null;
     }
 
     public String getName() {

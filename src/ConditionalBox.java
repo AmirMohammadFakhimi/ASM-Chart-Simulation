@@ -20,4 +20,12 @@ public class ConditionalBox extends Box {
     public void setOutput(int output) {
         this.output = output;
     }
+
+    public ArrayList<Expression> getRegisterOperations() {
+        return registerOperations;
+    }
+
+    public int getOutput() {
+        return output;
+    }
 }
