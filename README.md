@@ -93,8 +93,8 @@ Hope you will enjoy. 😉
 - Input
 ### Simple Example
 ---
-#### ASM Chart (© Amin Foshati class at Sharif University of Technology, Spring 2022)
-![alt text](https://github.com/AmirMohammadFakhimi/ASM-Chart-Simulation/blob/main/Sample\ ASM\ Chart.png?raw=true)
+#### ASM Chart (© Amin Foshati class at Sharif University of Technology, Spring 2022):
+![alt text](https://github.com/AmirMohammadFakhimi/ASM-Chart-Simulation/blob/fd36799f08b1e1a37234173fd6ba1c0298aba669/Sample%20ASM%20Chart.png?raw=true)
 #### Inputs for ASM Chart:
 15  
 init, mul  
