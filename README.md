@@ -37,48 +37,37 @@ It's an app that gets ASM Chart and simulates it (showing registers' values) bas
 - Register==Register
 - Register==Number
 - Number==Register
-- Number==Number
 <br>
 
 - Register<Register
 - Register<Number
 - Number<Register
-- Number<Number
 <br>
 
 - Register<=Register
 - Register<=Number
 - Number<=Register
-- Number<=Number
 <br>
 
 - Register||Register
 - Register||Number
 - Number||Register
-- Number||Number
 <br>
 
 - Register&&Register
 - Register&&Number
 - Number&&Register
-- Number&&Number
 <br>
 
 - Register|Register
 - Register|Number
 - Number|Register
-- Number|Number
 <br>
 
 - Register&Register
 - Register&Number
 - Number&Register
-- Number&Number
 <br>
 
 - |Register
-- |Number
-<br>
-
 - &Register
-- &Number
