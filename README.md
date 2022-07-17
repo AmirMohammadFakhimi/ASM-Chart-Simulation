@@ -18,6 +18,9 @@ It's an app that gets ASM Chart and simulates it (showing registers' values) bas
 - Register<=Register/Register
 - Register<=Register/Number
 - Register<=Number/Register
+- Register<=Register%Register
+- Register<=Register%Number
+- Register<=Number%Register
 <br>
 
 - Register=Register
@@ -34,6 +37,9 @@ It's an app that gets ASM Chart and simulates it (showing registers' values) bas
 - Register=Register/Register
 - Register=Register/Number
 - Register=Number/Register
+- Register<=Register%Register
+- Register<=Register%Number
+- Register<=Number%Register
 
 #### Conditions
 - Register==Register
