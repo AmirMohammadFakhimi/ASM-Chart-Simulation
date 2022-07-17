@@ -6,6 +6,8 @@ It's an app that gets ASM Chart and simulates it (showing registers' values) bas
 #### Register Operations
 - Register<=Register
 - Register<=Number
+- Register<=Input
+  - If you want to using this, you should enter "Input" same as "Input1", "Input2" or ...
 - Register<=Register+Register
 - Register<=Register+Number
 - Register<=Number+Register
@@ -25,6 +27,8 @@ It's an app that gets ASM Chart and simulates it (showing registers' values) bas
 
 - Register=Register
 - Register=Number
+- Register=Input
+  - If you want to using this, you should enter "Input" same as "Input1", "Input2" or ...
 - Register=Register+Register
 - Register=Register+Number
 - Register=Number+Register
