@@ -4,8 +4,10 @@ import java.util.HashMap;
 
 public class Main {
     final static int printSpace = 10;
+    static int maxClock;
 
     public static void main(String[] args) {
+        maxClock = Utils.getIntegerInput("clock");
         getBoxes();
         addConnections();
         int startingBoxId = getStartingBoxId();
@@ -196,7 +198,7 @@ public class Main {
             for (int outputState : outputs.keySet()) {
                 boolean isValid;
                 do {
-                    System.out.print("  " + outputState + ": ");
+                    System.out.print("    output " + outputState + ": ");
 
                     try {
                         int destinationId = Integer.parseInt(Utils.getScanner().nextLine());
@@ -257,8 +259,7 @@ public class Main {
         int currentBoxId = startingBoxId;
         int nextBoxId = -1;
 
-//        i is the clock
-        for (int i = 1; i <= 50; i++) {
+        for (int clock = 1; clock <= maxClock; clock++) {
             do {
                 Box box = Box.getBox(currentBoxId);
 
@@ -285,7 +286,7 @@ public class Main {
                 currentBoxId = nextBoxId;
             } while ((!(Box.getBox(nextBoxId) instanceof StateBox)));
 
-            drawRowOfTheTable(i, nextBoxId);
+            drawRowOfTheTable(clock, nextBoxId);
         }
     }
 

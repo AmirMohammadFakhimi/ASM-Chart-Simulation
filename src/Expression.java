@@ -80,7 +80,7 @@ public class Expression {
             compileOneOperatorConditions(expression);
             type.setFirst(ExpressionType.BITWISE_OR);
         } else {
-            compileInput(expression);
+            compileInput();
             type.setFirst(ExpressionType.INPUT);
         }
     }
@@ -199,7 +199,7 @@ public class Expression {
         type.setSecond(ExpressionOperator.R);
     }
 
-    private void compileInput(String expression) {
+    private void compileInput() {
         register1 = null;
         register2 = null;
         register3 = null;
@@ -261,7 +261,7 @@ public class Expression {
             else if (type.getSecond().equals(ExpressionOperator.N))
                 register3.setValue(number);
             else if (type.getSecond().equals(ExpressionOperator.INPUT))
-                register3.setValue(getInput());
+                register3.setValue(Utils.getIntegerInput(expression));
 
             return -1;
         }
@@ -335,20 +335,9 @@ public class Expression {
 
             return -2;
         } else if (type.getFirst().equals(ExpressionType.INPUT))
-            return getInput();
+            return Utils.getIntegerInput(expression);
 
 
         return -3;
-    }
-
-    private int getInput() {
-        do {
-            System.out.print("Please enter input number for \"" + expression + "\" condition: ");
-            try {
-                return Integer.parseInt(Utils.getScanner().nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input, please try again.");
-            }
-        } while (true);
     }
 }
