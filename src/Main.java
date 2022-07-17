@@ -51,7 +51,7 @@ public class Main {
             getStateBoxes();
         } else {
             System.out.println("Id of your state boxes are from " +
-                    "0 to " + (stateBoxesNames.size() - 1) + " respectively.");
+                    "0 to " + (stateBoxesNames.size() - 1) + " ,respectively.");
         }
     }
 
@@ -192,7 +192,7 @@ public class Main {
 
         for (DecisionBox decisionBox : DecisionBox.getDecisionBoxes()) {
             int id = decisionBox.getId();
-            System.out.println("Decision box " + id + ": ");
+            System.out.println("Decision box " + id + ":");
 
             HashMap<Integer, Integer> outputs = decisionBox.getOutputs();
             for (int outputState : outputs.keySet()) {
@@ -317,3 +317,48 @@ public class Main {
     }
 
 }
+/*
+15
+init, mul
+start 0 1
+|r1 0 1
+r1<=Input1 r2<=Input2 r3<=0 ready<=0
+r3<=r3+r2 r1<=r1-1
+ready<=1 r4<=r3
+2
+3
+0
+4
+6
+5
+1
+1
+0
+0
+...
+*/
+/*
+15
+init, cmp, mul
+S 0 1
+R1<R2 1 0
+|R1 1 0
+R1<=Input1 R2<=Input2 R<=0 R3<=0
+R2<=R1 R1<=R2
+R3<=R3+R2 R1<=R1-1
+R<=1 R4<=R3
+3
+4
+5
+0
+6
+7
+2
+9
+8
+1
+2
+2
+0
+0
+*/

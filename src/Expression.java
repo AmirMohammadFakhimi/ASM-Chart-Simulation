@@ -139,7 +139,7 @@ public class Expression {
         register3 = Register.createRegister(register3Name);
         register2 = null;
 
-        if (register1Name.startsWith("Input")) {
+        if (register1Name.startsWith("Input") && !register1Name.equals("Input")) {
             register1 = null;
             number = 0;
 
