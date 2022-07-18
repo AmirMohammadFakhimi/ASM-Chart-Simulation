@@ -1,6 +1,16 @@
 # ASM-Chart-Simulation
 It's an app that gets ASM Chart and simulates it (showing registers' values) based on the cycle.  
-
+### Table of Contents
+---
+- [Explenations](#explenations)
+- [How to Run](#how-to-run)
+- [Supported Expressions](#supported-expressions)
+  - [Register Operations](#register-operations)
+  - [Conditions](#conditions)
+- [Simple Example](#simple-example)
+  - [ASM Chart](#asm-chart)
+  - [Inputs of ASM Chart](#inputs-of-asm-chart)
+  - [Terminal](#terminal)
 ### Explenations
 ---
 Please note that all numbers (inputs and outputs) must be decimal, and default value of registers is zero. How to using this app is clear when you starting the app.  
@@ -96,9 +106,10 @@ Fist download the latest release. Then run terminal/cmd in download folder, and 
 - Input
 ### Simple Example
 ---
-#### ASM Chart (© Amin Foshati class at Sharif University of Technology, Spring 2022):
+#### ASM Chart:
 ![alt text](https://github.com/AmirMohammadFakhimi/ASM-Chart-Simulation/blob/fd36799f08b1e1a37234173fd6ba1c0298aba669/Sample%20ASM%20Chart.png?raw=true)
-#### Inputs for ASM Chart:
+***© Amin Foshati class at Sharif University of Technology, Spring 2022***
+#### Inputs of ASM Chart:
 15  
 init, mul  
 start 0 1  
