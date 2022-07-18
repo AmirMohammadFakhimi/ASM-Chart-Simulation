@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public abstract class Box {
     private static final ArrayList<Box> boxes = new ArrayList<>();
 
-    private int id;
-    private ArrayList<Integer> inputs = new ArrayList<>();
+    private final int id;
+    private final ArrayList<Integer> inputs = new ArrayList<>();
 
     public Box() {
         this.id = boxes.size();
