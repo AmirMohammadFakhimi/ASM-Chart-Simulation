@@ -22,4 +22,4 @@ jobs:
         java-version: '18'
         distribution: 'temurin'
     - name: Build with Ant
-      run: javac ../../Main.java && java Main
+      run: echo pwd && javac ../../Main.java && java Main
