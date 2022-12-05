@@ -22,4 +22,4 @@ jobs:
         java-version: '18'
         distribution: 'temurin'
     - name: Build with Ant
-      run: cd src && javac Main.java && java Main
+      run: java -jar ASMChartSimulation.jar
