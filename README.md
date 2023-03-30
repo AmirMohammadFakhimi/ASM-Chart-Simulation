@@ -2,7 +2,7 @@
 It's an app that gets ASM Chart and simulates it (showing registers' values) based on the cycle.  
 ### Table of Contents
 ---
-- [Explenations](#explenations)
+- [Explanations](#explanations)
 - [How to Run](#how-to-run)
 - [Supported Expressions](#supported-expressions)
   - [Register Operations](#register-operations)
@@ -11,7 +11,7 @@ It's an app that gets ASM Chart and simulates it (showing registers' values) bas
   - [ASM Chart](#asm-chart)
   - [Inputs of ASM Chart](#inputs-of-asm-chart)
   - [Terminal](#terminal)
-### Explenations
+### Explanations
 ---
 Please note that all numbers (inputs and outputs) must be decimal, and default value of registers is zero. How to using this app is clear when you starting the app.  
 But if you see any problem in using the app, any bug or any suggestion, please feel free to contact me: fakhimi.amirmohamad@gmail.com
